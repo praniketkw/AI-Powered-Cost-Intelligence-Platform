@@ -1,0 +1,163 @@
+{
+  "cloudWasteBreakdown": {
+    "totalWastePercentage": 32,
+    "categories": [
+      {
+        "name": "Unused/Idle Resources",
+        "percentage": 45,
+        "annualWasteForLargeCompany": 2500000,
+        "examples": [
+          "Development servers running 24/7 instead of business hours only",
+          "Test databases created for projects but never deleted",
+          "Storage accounts with old backups never accessed",
+          "Load balancers with no traffic",
+          "Virtual machines in 'stopped' state but still incurring storage costs"
+        ],
+        "easyWins": [
+          "Auto-shutdown policies for dev/test environments",
+          "Automated cleanup of unused resources",
+          "Regular resource audits and tagging"
+        ]
+      },
+      {
+        "name": "Over-Provisioned Resources",
+        "percentage": 25,
+        "annualWasteForLargeCompany": 1800000,
+        "examples": [
+          "Using 32GB RAM servers when 8GB would suffice",
+          "Databases with 10TB storage when only using 2TB",
+          "Network bandwidth 10x higher than actual usage",
+          "Premium storage for non-critical applications"
+        ],
+        "easyWins": [
+          "Right-sizing recommendations based on actual usage",
+          "Performance monitoring to identify over-provisioning",
+          "Automated scaling policies"
+        ]
+      },
+      {
+        "name": "Unoptimized Storage",
+        "percentage": 15,
+        "annualWasteForLargeCompany": 900000,
+        "examples": [
+          "Storing old logs on premium storage instead of archive storage",
+          "Multiple copies of the same data across regions",
+          "Not implementing data lifecycle policies",
+          "Keeping snapshots and backups indefinitely"
+        ],
+        "easyWins": [
+          "Implement storage lifecycle policies",
+          "Move infrequently accessed data to cheaper tiers",
+          "Automated cleanup of old snapshots"
+        ]
+      },
+      {
+        "name": "Missing Reserved Instance Savings",
+        "percentage": 10,
+        "annualWasteForLargeCompany": 600000,
+        "examples": [
+          "Paying on-demand rates for predictable workloads",
+          "Not committing to 1-year or 3-year terms for stable resources",
+          "Missing savings plans for compute-intensive workloads"
+        ],
+        "easyWins": [
+          "Analyze usage patterns for reservation opportunities",
+          "Implement reservation management policies",
+          "Regular review of commitment utilization"
+        ]
+      },
+      {
+        "name": "Poor Auto-Scaling",
+        "percentage": 5,
+        "annualWasteForLargeCompany": 300000,
+        "examples": [
+          "Running peak capacity during low-traffic periods",
+          "Slow scale-down policies",
+          "Not scaling down during nights and weekends",
+          "Over-aggressive scaling up policies"
+        ],
+        "easyWins": [
+          "Implement time-based scaling policies",
+          "Optimize scaling thresholds and timing",
+          "Use predictive scaling based on historical patterns"
+        ]
+      }
+    ]
+  },
+  "industryBenchmarks": {
+    "averageCloudWastePercentage": 32,
+    "topPerformersWastePercentage": 15,
+    "worstPerformersWastePercentage": 50,
+    "averageTimeToDiscoverWaste": "45 days",
+    "averageInvestigationTime": "4 hours",
+    "alertFatigueRate": "90% false positives"
+  },
+  "companySizeImpact": {
+    "enterprise": {
+      "employeeCount": "10000+",
+      "averageCloudSpend": 8000000,
+      "averageWaste": 2560000,
+      "potentialSavingsWithOurPlatform": 2800000,
+      "platformROI": "56x"
+    },
+    "large": {
+      "employeeCount": "1000-10000",
+      "averageCloudSpend": 2000000,
+      "averageWaste": 640000,
+      "potentialSavingsWithOurPlatform": 700000,
+      "platformROI": "35x"
+    },
+    "medium": {
+      "employeeCount": "100-1000",
+      "averageCloudSpend": 500000,
+      "averageWaste": 160000,
+      "potentialSavingsWithOurPlatform": 175000,
+      "platformROI": "17.5x"
+    }
+  },
+  "realWorldExamples": [
+    {
+      "company": "Large E-commerce Platform",
+      "industry": "Retail",
+      "cloudSpend": 8000000,
+      "wasteIdentified": 2400000,
+      "topWasteSources": [
+        "400+ unused dev environments: $800k/year",
+        "Over-provisioned databases: $600k/year", 
+        "Unoptimized storage: $500k/year",
+        "Missing reserved instances: $500k/year"
+      ],
+      "timeToDiscover": "3 months",
+      "savingsAchieved": 1200000
+    },
+    {
+      "company": "SaaS Platform",
+      "industry": "Software",
+      "cloudSpend": 3200000,
+      "wasteIdentified": 1100000,
+      "topWasteSources": [
+        "Test environments 24/7: $400k/year",
+        "Over-sized instances: $350k/year",
+        "Redundant storage: $200k/year",
+        "Poor scaling: $150k/year"
+      ],
+      "timeToDiscover": "2 months",
+      "savingsAchieved": 700000
+    },
+    {
+      "company": "Financial Services",
+      "industry": "Finance",
+      "cloudSpend": 12000000,
+      "wasteIdentified": 3600000,
+      "topWasteSources": [
+        "Compliance over-provisioning: $1.2M/year",
+        "Unused DR resources: $800k/year",
+        "Legacy inefficiencies: $700k/year",
+        "Manual scaling: $600k/year",
+        "Storage mismanagement: $300k/year"
+      ],
+      "timeToDiscover": "4 months",
+      "savingsAchieved": 1800000
+    }
+  ]
+}
