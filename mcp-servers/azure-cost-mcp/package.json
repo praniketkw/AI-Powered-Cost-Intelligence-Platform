@@ -1,0 +1,26 @@
+{
+  "name": "azure-cost-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Azure Cost Management integration with AI-powered analysis",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "@azure/arm-consumption": "^9.0.0",
+    "@azure/identity": "^4.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": ["mcp", "azure", "cost-management", "ai", "enterprise"],
+  "author": "Your Name",
+  "license": "MIT"
+}

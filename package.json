@@ -1,0 +1,25 @@
+{
+  "name": "ai-cost-optimization-platform",
+  "version": "1.0.0",
+  "description": "AI-Powered Enterprise Infrastructure Cost Optimization Platform",
+  "private": true,
+  "workspaces": [
+    "mcp-servers/*",
+    "ai-analysis-engine",
+    "dashboard"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=dashboard",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspace=dashboard",
+    "mcp:azure": "npm run dev --workspace=mcp-servers/azure-cost-mcp",
+    "ai:dev": "npm run dev --workspace=ai-analysis-engine"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
