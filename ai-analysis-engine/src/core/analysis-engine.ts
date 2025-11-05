@@ -269,8 +269,8 @@ Return your analysis in the required JSON format with:
     for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
       try {
         const response = await this.anthropic.messages.create({
-          model: 'claude-3-5-sonnet-20241022',
-          max_tokens: 4000,
+          model: 'claude-3-haiku-20240307',
+          max_tokens: 2000, // Reduced for cost efficiency
           temperature: 0.1, // Low temperature for consistent analysis
           messages: [
             {

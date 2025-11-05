@@ -36,17 +36,54 @@ export function InteractiveQuery() {
     }
   ])
 
-  // Simulate AI responses (in real app, this would call our AI Analysis Engine)
+  // Real AI responses using Claude and Azure data
+  const getAIResponse = async (userQuery: string): Promise<{ message: string; suggestions: string[] }> => {
+    try {
+      const response = await fetch('/api/ai/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: userQuery })
+      });
+
+      if (!response.ok) {
+        // Fallback to backend API
+        const backendResponse = await fetch('http://localhost:8000/api/ai/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: userQuery })
+        });
+        
+        if (backendResponse.ok) {
+          const data = await backendResponse.json();
+          return {
+            message: data.data.analysis.summary || 'Analysis completed successfully.',
+            suggestions: data.data.analysis.recommendations?.slice(0, 3) || []
+          };
+        }
+      }
+
+      const data = await response.json();
+      return {
+        message: data.data.analysis.summary || 'Analysis completed successfully.',
+        suggestions: data.data.analysis.recommendations?.slice(0, 3) || []
+      };
+    } catch (error) {
+      console.error('AI query failed:', error);
+      return simulateAIResponse(userQuery);
+    }
+  };
+
+  // Fallback simulation for when API is unavailable
   const simulateAIResponse = (userQuery: string): { message: string; suggestions: string[] } => {
     const lowerQuery = userQuery.toLowerCase()
     
     if (lowerQuery.includes('department') && lowerQuery.includes('spending')) {
       return {
-        message: "Based on current data, **Core Platform** is your highest spender at $162.8k this month (28% over budget). They're primarily driven by increased container usage and new microservices deployment. **Data & ML** follows at $98.2k with 35% waste identified from unused training environments.",
+        message: "⚠️ **Using simulated data** - Based on your Azure subscription, I can see cost patterns but no significant spending yet. Your subscription appears to be new or in testing phase with minimal resource usage. Consider deploying some resources to see real cost analysis.",
         suggestions: [
-          "How can Core Platform reduce their spending?",
-          "What's causing the Data & ML waste?",
-          "Show me the cost breakdown by resource type"
+          "How do I add Azure resources to track?",
+          "What services should I monitor for costs?",
+          "Show me cost optimization best practices"
         ]
       }
     }
@@ -108,12 +145,13 @@ export function InteractiveQuery() {
     }
     
     setConversation(prev => [...prev, userMessage])
+    const currentQuery = query
     setQuery('')
     setIsLoading(true)
 
-    // Simulate AI processing delay
-    setTimeout(() => {
-      const aiResponse = simulateAIResponse(query)
+    try {
+      // Get real AI response
+      const aiResponse = await getAIResponse(currentQuery)
       const aiMessage = {
         type: 'ai' as const,
         message: aiResponse.message,
@@ -122,8 +160,21 @@ export function InteractiveQuery() {
       }
       
       setConversation(prev => [...prev, aiMessage])
+    } catch (error) {
+      console.error('Failed to get AI response:', error)
+      // Fallback to simulation
+      const aiResponse = simulateAIResponse(currentQuery)
+      const aiMessage = {
+        type: 'ai' as const,
+        message: `⚠️ **AI temporarily unavailable** - ${aiResponse.message}`,
+        timestamp: new Date(),
+        suggestions: aiResponse.suggestions
+      }
+      
+      setConversation(prev => [...prev, aiMessage])
+    } finally {
       setIsLoading(false)
-    }, 1500)
+    }
   }
 
   const handleSuggestionClick = (suggestion: string) => {

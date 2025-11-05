@@ -231,7 +231,11 @@ export const mockDashboardData: DashboardData = {
 }
 
 // Helper function to format currency
-export const formatCurrency = (amount: number): string => {
+export const formatCurrency = (amount: number | undefined | null): string => {
+  // Handle undefined, null, or NaN values
+  if (amount === undefined || amount === null || isNaN(amount)) {
+    return '$0'
+  }
   if (Math.abs(amount) >= 1000000) {
     return `$${(amount / 1000000).toFixed(1)}M`
   } else if (Math.abs(amount) >= 1000) {
@@ -242,7 +246,10 @@ export const formatCurrency = (amount: number): string => {
 }
 
 // Helper function to format percentage
-export const formatPercentage = (value: number): string => {
+export const formatPercentage = (value: number | undefined | null): string => {
+  if (value === undefined || value === null || isNaN(value)) {
+    return '0%'
+  }
   return `${value > 0 ? '+' : ''}${value.toFixed(1)}%`
 }
 

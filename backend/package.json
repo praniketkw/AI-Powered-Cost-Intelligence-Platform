@@ -1,0 +1,39 @@
+{
+  "name": "cost-optimization-backend",
+  "version": "1.0.0",
+  "description": "Main backend API for AI-powered cost optimization platform",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5",
+    "ws": "^8.14.2",
+    "redis": "^4.6.10",
+    "pg": "^8.11.3",
+    "zod": "^3.22.4",
+    "dotenv": "^16.3.1",
+    "@anthropic-ai/sdk": "^0.24.0",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/compression": "^1.7.5",
+    "@types/ws": "^8.5.10",
+    "@types/pg": "^8.10.9",
+    "@types/node-cron": "^3.0.11",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
